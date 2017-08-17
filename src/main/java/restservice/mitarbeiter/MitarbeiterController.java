@@ -41,13 +41,18 @@ public class MitarbeiterController {
     }
 
     //===========GET=============================
+    @RequestMapping(method = RequestMethod.GET, value="")
+    public List<Mitarbeiter> getAll(){
+        return repository.findAll();
+    }
+
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
     public Mitarbeiter get(@PathVariable String id){
         return repository.findOne(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="")
-    public List<Mitarbeiter> getAll(){
-        return repository.findAll();
+    @RequestMapping(method = RequestMethod.GET, value="/?name={name}")
+    public List<Mitarbeiter> getByName(@PathVariable String name){
+        return repository.findByName(name);
     }
 }
