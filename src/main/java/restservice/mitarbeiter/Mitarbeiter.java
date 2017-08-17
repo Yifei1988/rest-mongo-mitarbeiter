@@ -3,7 +3,7 @@ package restservice.mitarbeiter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="mitarbeiters")
+@Document(collection="databaseMitarbeiter")
 public class Mitarbeiter {
 
     @Id
@@ -18,12 +18,14 @@ public class Mitarbeiter {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getVorname() {
         return vorname;
     }
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
+
     public String getName() {
         return name;
     }

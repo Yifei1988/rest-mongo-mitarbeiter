@@ -9,23 +9,45 @@ import java.util.List;
 @RequestMapping("/mitarbeiter")
 public class MitarbeiterController {
 
+    private MitarbeiterRepository repository;
+
     @Autowired
-    MitarbeiterRepository mitarbeiterRepository;
-
-    @RequestMapping(method = RequestMethod.POST)
-    public Mitarbeiter create(@RequestBody Mitarbeiter mitarbeiter){
-
-        Mitarbeiter result = mitarbeiterRepository.save(mitarbeiter);
-        return result;
+    public MitarbeiterController(MitarbeiterRepository repository){
+        this.repository = repository;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/{mitarbeiterId}")
-    public Mitarbeiter get(@PathVariable String mitarbeiterId){
-        return mitarbeiterRepository.findOne(mitarbeiterId);
+
+    //===========POST============================
+    @RequestMapping(method = RequestMethod.POST)
+    Mitarbeiter create(@RequestBody Mitarbeiter mitarbeiter){
+
+        //Mitarbeiter result = mitarbeiterRepository.save(mitarbeiter);
+        return repository.insert(mitarbeiter);
+    }
+
+    //===========DELETE==========================
+    @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
+    Mitarbeiter delete(@PathVariable String id) {
+        Mitarbeiter deletedMitarbeiter = repository.findOne(id);
+        repository.delete(id);
+        return deletedMitarbeiter;
+    }
+
+    //===========PUT=============================
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    Mitarbeiter delete(@PathVariable String id, @RequestBody Mitarbeiter updatedMitarbeiter) {
+        updatedMitarbeiter.setId(id);
+        return repository.save(updatedMitarbeiter);
+    }
+
+    //===========GET=============================
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    public Mitarbeiter get(@PathVariable String id){
+        return repository.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value="")
     public List<Mitarbeiter> getAll(){
-        return mitarbeiterRepository.findAll();
+        return repository.findAll();
     }
 }
