@@ -9,15 +9,19 @@ import java.util.List;
 @RequestMapping("/mitarbeiter")
 public class MitarbeiterController {
 
+    @Autowired
     private MitarbeiterRepository repository;
 
-    @Autowired
+    /*@Autowired
     public MitarbeiterController(MitarbeiterRepository repository){
         this.repository = repository;
-    }
+    }*/
 
+    //***************************************************************************************
+    //* use "application/json;charset=utf-8" as Content Type of Headers for POST/DELETE/PUT *
+    //***************************************************************************************
 
-    //===========POST============================
+    //======================================POST============================================
     @RequestMapping(method = RequestMethod.POST)
     Mitarbeiter create(@RequestBody Mitarbeiter mitarbeiter){
 
@@ -25,34 +29,41 @@ public class MitarbeiterController {
         return repository.insert(mitarbeiter);
     }
 
-    //===========DELETE==========================
-    @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
+    //======================================DELETE============================================
+    @RequestMapping(method=RequestMethod.DELETE, value="/id={id}")
     Mitarbeiter delete(@PathVariable String id) {
         Mitarbeiter deletedMitarbeiter = repository.findOne(id);
         repository.delete(id);
         return deletedMitarbeiter;
     }
 
-    //===========PUT=============================
-    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-    Mitarbeiter delete(@PathVariable String id, @RequestBody Mitarbeiter updatedMitarbeiter) {
+    //======================================PUT=================================================
+    @RequestMapping(method = RequestMethod.PUT, value = "/id={id}")
+    Mitarbeiter update(@PathVariable String id, @RequestBody Mitarbeiter updatedMitarbeiter) {
         updatedMitarbeiter.setId(id);
         return repository.save(updatedMitarbeiter);
     }
 
-    //===========GET=============================
+    //======================================GET==================================================
     @RequestMapping(method = RequestMethod.GET, value="")
     public List<Mitarbeiter> getAll(){
         return repository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/{id}")
-    public Mitarbeiter get(@PathVariable String id){
+    @RequestMapping(method = RequestMethod.GET, value="/id={id}")
+    public Mitarbeiter getById(@PathVariable String id){
         return repository.findOne(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/?name={name}")
-    public List<Mitarbeiter> getByName(@PathVariable String name){
+    @RequestMapping(method = RequestMethod.GET, value="/name={name}")
+    @ResponseBody
+    public List<Mitarbeiter> getAllByName(@PathVariable String name){
         return repository.findByName(name);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="/vorname={vorname}")
+    @ResponseBody
+    public List<Mitarbeiter> getAllByVorname(@PathVariable String vorname){
+        return repository.findByVorname(vorname);
     }
 }
