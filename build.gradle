@@ -1,10 +1,13 @@
 
 buildscript {
-	repositories {
-	       maven{url("https://plugins.gradle.org/m2/")}
-	}
+	ext {
+		springBootVersion     = "1.5.6.RELEASE"
+		gradleDockerVersion   = "1.2"
+        }
+	repositories { maven{url("https://plugins.gradle.org/m2/")} }
 	dependencies {
-	       classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.6.RELEASE")
+	       classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+               classpath("se.transmode.gradle:gradle-docker:${gradleDockerVersion}")
 	}
 }
 
@@ -13,17 +16,30 @@ apply plugin: 'java'
 apply plugin: 'idea' 
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'docker'
 
+group = 'rest-mongo-mitarbeiter'
 
 jar {
-	baseName = 'rest-mongo-mitarbeiter'
+	baseName = 'restserver'
 	version = '0.0.1'
 }
 
-
-repositories {
-    maven{url("https://plugins.gradle.org/m2/")}
+task buildDocker(type: Docker, dependsOn: build) {
+  baseImage = 'frolvlad/alpine-oraclejdk8:slim'
+  push = true
+  applicationName = jar.baseName
+  dockerfile = file('docker/Dockerfile')
+  doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
 }
+
+
+repositories { maven{url("https://plugins.gradle.org/m2/")} }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -31,6 +47,6 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-rest")
+    compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
 }
