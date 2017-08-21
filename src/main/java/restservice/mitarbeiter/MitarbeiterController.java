@@ -12,25 +12,14 @@ public class MitarbeiterController {
     @Autowired
     private MitarbeiterRepository repository;
 
-    /*@Autowired
-    public MitarbeiterController(MitarbeiterRepository repository){
-        this.repository = repository;
-    }*/
-
-    //***************************************************************************************
-    //* use "application/json;charset=utf-8" as Content Type of Headers for POST/DELETE/PUT *
-    //***************************************************************************************
-
     //======================================POST============================================
     @RequestMapping(method = RequestMethod.POST)
     Mitarbeiter create(@RequestBody Mitarbeiter mitarbeiter){
-
-        //Mitarbeiter result = mitarbeiterRepository.save(mitarbeiter);
         return repository.insert(mitarbeiter);
     }
 
     //======================================DELETE============================================
-    @RequestMapping(method=RequestMethod.DELETE, value="/id={id}")
+    @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
     Mitarbeiter delete(@PathVariable String id) {
         Mitarbeiter deletedMitarbeiter = repository.findOne(id);
         repository.delete(id);
@@ -38,7 +27,7 @@ public class MitarbeiterController {
     }
 
     //======================================PUT=================================================
-    @RequestMapping(method = RequestMethod.PUT, value = "/id={id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
     Mitarbeiter update(@PathVariable String id, @RequestBody Mitarbeiter updatedMitarbeiter) {
         updatedMitarbeiter.setId(id);
         return repository.save(updatedMitarbeiter);
@@ -50,7 +39,7 @@ public class MitarbeiterController {
         return repository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/id={id}")
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
     public Mitarbeiter getById(@PathVariable String id){
         return repository.findOne(id);
     }
