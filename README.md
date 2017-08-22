@@ -9,7 +9,7 @@ Build Tool: **Gradle**
 IDE: **IntelliJ IDEA**  
 Database: **MongoDB**
 
-** Steps to run rest service and mongodb in docker container:**
+**Steps to run rest service and mongodb in docker container:**
  1. Build jar: **~/rest-mongo-mitarbeiter $** gradle build  
  2. Make a new folder **~/rest-mongo-mitarbeiter/docker**  
  3. Move <em>rest-mongo-mitarbeiter-0.0.1.jar</em> from **~/rest-mongo-mitarbeiter/build/libs** into **~/rest-mongo-mitarbeiter/docker**  
@@ -26,3 +26,8 @@ Database: **MongoDB**
 **PUT http://localhost:8080/mitarbeiter/< Id >** with JSON (Content Type=application/json;charset=utf-8)  
 **DELETE http://localhost:8080/mitarbeiter/< Id >** with JSON (Content Type=application/json;charset=utf-8)
 
+## FRONTEND
+
+Language: **HTML + JavaScript**  
+library: **jQuery**  
+IDE: **Bluefish Editor**
