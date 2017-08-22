@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Created by xiy4abt on 8/16/17.
+ */
 @RestController
 @RequestMapping("/mitarbeiter")
 public class MitarbeiterController {

@@ -3,6 +3,9 @@ package restservice.mitarbeiter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Created by xiy4abt on 8/16/17.
+ */
 @Document(collection="databaseMitarbeiter")
 public class Mitarbeiter {
 
