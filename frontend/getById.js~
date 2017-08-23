@@ -1,0 +1,31 @@
+$(document).ready(function () {
+            $('#btnGetById').click(function () {
+                var resultSummary = $('#resultDiv1');
+                var resultElement = $('#resultDiv2');
+                
+                var requestData = $('#txtId').val();
+                $.ajax({
+                    url: 'http://localhost:8080/mitarbeiter/' + requestData,
+                    method: 'get',
+                    dataType: 'json',
+                    if (requestData = null) {alert("Fuelen Sie bitte die Id");}
+                    success: function (response) {
+                        if (requestData != null) {
+                            resultSummary.html("Id = " + requestData + " :");
+                            
+                            var resultAll = "";
+                            resultAll = resultAll + "Vorname: " + response.vorname + "<br />";
+                            resultAll = resultAll + "Name: " + response.name + "<br />";
+                            resultAll = resultAll + "<br />";
+                            resultElement.html(resultAll);
+                        }
+                        else{
+                        	 alert("Fuelen Sie bitte die Id");
+                        }
+                    },
+                    error: function (err) {
+                        alert("Nimand gefunden!");
+                    }
+                });
+            });
+})
