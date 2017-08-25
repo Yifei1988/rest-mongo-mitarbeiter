@@ -7,12 +7,15 @@
     <script type="text/javascript" src="getById.js"></script>
     <script type="text/javascript" src="getByVorname.js"></script>
     <script type="text/javascript" src="getByName.js"></script>
+    <script type="text/javascript" src="postOne.js"></script>
+    <script type="text/javascript" src="putById.js"></script>
+    <script type="text/javascript" src="deleteById.js"></script>
 
 </head>
 <body style="font-family:Arial">
     <table>
         <tr>
-            <input type="button" id="btnGetAll" value="Get All Mitarbeiter">
+            <td><input type="button" id="btnGetAll" value="Get All Mitarbeiter"></td>
         </tr>
         <tr>
             <td>Id</td>
@@ -29,10 +32,27 @@
             <td><input type="text" id="txtName" /></td>
             <td><input type="button" id="btnGetByName" value="Search"></td>
         </tr>
+        <tr></tr>
         <tr>
-            <td>Json</td>
-            <td><input type="text" id="txtJson" /></td>
+            <td>Name:</td>
+            <td><input type="text" id="txtNewName" /></td>
+            <td>Vorname:</td>
+            <td><input type="text" id="txtNewVorname" /></td>
             <td><input type="button" id="btnPost" value="Add"></td>
+        </tr>
+        <tr>
+            <td>Id</td>
+            <td><input type="text" id="txtIdUpdate" /></td>
+            <td>Name:</td>
+            <td><input type="text" id="txtPutName" /></td>
+            <td>Vorname:</td>
+            <td><input type="text" id="txtPutVorname" /></td>
+            <td><input type="button" id="btnPutById" value="Update"></td>
+        </tr>
+        <tr>
+            <td>Id</td>
+            <td><input type="text" id="txtIdDelete" /></td>
+            <td><input type="button" id="btnDeleteById" value="Delete"></td>
         </tr>
     </table>
     <br /><br />
