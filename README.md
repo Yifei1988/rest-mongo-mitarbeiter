@@ -40,10 +40,10 @@ Web-Server: **Nginx**
  7. Open browser at **http://localhost:80/** to consume the service by frontend
 
 **Port:**  
-host: http://localhost
-RESTful API in embedded Tomcat: 8080  
-Mongodb: 27017  
-Nginx with static content: 80, 443
+host: http://localhost  
+RESTful API in embedded Tomcat: **8080**  
+Mongodb: **27017**  
+Nginx with static content: **80**, **443**
 
 **base image**  
 RESTful API: frolvlad/alpine-oraclejdk8:latest  
