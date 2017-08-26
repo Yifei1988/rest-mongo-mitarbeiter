@@ -30,6 +30,9 @@ Web-Server: **Nginx**
 
 ## Docker-Container
 
+Editor/IDE for docker-compose.yml: **Visual Studio Code**  
+(I used IDE to edit YAML file, because YAML is indentation-based, and **VS Code** support YAML.)
+
 **Steps to run rest service + mongodb + frontend in docker-containers:**  
  1. Build jar: **~/rest-mongo-mitarbeiter $** gradle build  
  2. Make a new folder **~/rest-mongo-mitarbeiter/docker**  
@@ -46,7 +49,7 @@ Mongodb: **27017**
 Nginx with static content: **80**, **443**
 
 **base image**  
-RESTful API: frolvlad/alpine-oraclejdk8:latest  
-Frontend: nginx:alpine
+RESTful API: **frolvlad/alpine-oraclejdk8:latest**  
+Frontend: **nginx:alpine**
 
 
